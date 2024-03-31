@@ -1,0 +1,146 @@
+# Simple workflow for deploying static content to GitHub Pages
+name: Deploy static content to Pages
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload entire repository
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HAZIR</title>
+  <style>
+    /* CSS styles can be added here to mimic UrbanClap's design */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #2c3e50;
+      color: #fff;
+      padding: 10px 20px;
+      text-align: center;
+    }
+    nav {
+      background-color: #34495e;
+      color: #fff;
+      padding: 10px;
+    }
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    nav ul li {
+      display: inline;
+      margin-right: 20px;
+    }
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+    }
+    section {
+      padding: 20px;
+    }
+    footer {
+      background-color: #2c3e50;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>HAZIR</h1>
+    <p>Your House, Our Expertise. Where Every Service Shines.</p>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <section id="home">
+    <h2>Welcome to HAZIR!</h2>
+    <p>Find the best services near you.</p>
+  </section>
+  <section id="services">
+    <h2>Services Provided:</h2>
+    <ul>
+      <li><a href="#plumbing">Plumbing</a></li>
+      <li><a href="#electrician">Electrician</a></li>
+      <li><a href="#gardner">Gardner</a></li>
+      <li><a href="#cleaner">Cleaner</a></li>
+    </ul>
+  </section>
+  <section id="about">
+    <h2>About Us</h2>
+    <p>Contact us: <a href="mailto:hazir.management@gmail.com">hazir.management@gmail.com</a></p>
+  </section>
+  <section id="plumbing">
+    <h2>Plumbing Services</h2>
+    <p>Schedule plumbing service here.</p>
+  </section>
+  <section id="electrician">
+    <h2>Electrician Services</h2>
+    <p>Schedule electrician service here.</p>
+  </section>
+  <section id="gardner">
+    <h2>Gardner Services</h2>
+    <p>Schedule gardner service here.</p>
+  </section>
+  <section id="cleaner">
+    <h2>Cleaner Services</h2>
+    <p>Schedule cleaner service here.</p>
+  </section>
+  <footer>
+    <p>&copy; 2024 HAZIR. All rights reserved.</p>
+  </footer>
+</body>
+</html>
